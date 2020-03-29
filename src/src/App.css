@@ -21,7 +21,7 @@ input:focus {
   flex-direction: column;
   justify-content: center;
   overflow: hidden;
-  background: #d47c03;
+  background: #000;
 }
 
 .image-container img {
@@ -37,10 +37,8 @@ input:focus {
 h1 {
   padding: .66rem 0;
   text-align: center;
-  background-color: #d47c03;
+  background-color: #cca353;
   font-family: Poppins, sans-serif;
   font-size: 1.8rem;
-  color: #532300;
-  margin: 0;
-  padding: .75em;
+  color: #fff;
 }
