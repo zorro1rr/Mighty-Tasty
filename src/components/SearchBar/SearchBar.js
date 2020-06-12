@@ -1,96 +1,135 @@
-import React from 'react';
-import './SearchBar.css';
-// import AddressForm from '../Autocomplete/Autocomplete';
+import React from "react";
+import "./SearchBar.css";
 
 const sortByOptions = {
-    'Best Match': 'best_match',
-    'Highest Rated': 'rating',
-    'Most Reviewed': 'review_count'
+  "Best Match": "best_match",
+  "Highest Rated": "rating",
+  "Most Reviewed": "review_count",
 };
 
 class SearchBar extends React.Component {
-    constructor(props){
-        super(props);
-        //create state object with the keys:
-        //terms, location, sortBy for the search option inputs
-        this.state= {
-        term: '' ,
-        location: '',
-        sortBy: 'best_match',
-        };
-        //since they use .this the these two methods need to be bind(ed)
-        this.handleTermChange = this.handleTermChange.bind(this);
-        this.handleLocationChange = this.handleLocationChange.bind(this);
-        //this uses props so it must also be bound
-        this.handleSearch = this.handleSearch.bind(this);
-    }
-
-        //methods to deal with input elements Terms and Location
-     handleTermChange(event){
-        this.setState({
-            term: event.target.value
-         });
-     }
-    handleLocationChange(event){
-         this.setState({
-            location:  event.target.value
-         });
-      }
-      //give the let's go button functionality
-    handleSearch(event){
-        this.props.searchYelp(this.state.term, this.state.location, this.state.sortBy);
-        event.preventDefault();
-    }
-        
-    getSortByClass(sortByOption){
-        if(sortByOption === this.state.sortBy){
-            return 'active'
-        } else {
-            return ''
-        }
+  constructor(props) {
+    super(props);
+    //create state object with the keys:
+    //terms, location, sortBy for the search option inputs
+    this.state = {
+      term: "",
+      location: "",
+      sortBy: "best_match",
+      userLocation: "",
     };
+    //since they use .this the these two methods need to be bind(ed)
+    this.handleTermChange = this.handleTermChange.bind(this);
+    this.handleLocationChange = this.handleLocationChange.bind(this);
+    this.getLocation = this.getLocation.bind(this);
+    //this uses props so it must also be bound
+    this.handleSearch = this.handleSearch.bind(this);
+  }
 
-    handleSortByChange(sortByOption){
-        this.setState({
-            sortBy: sortByOption
-        });
+  //methods to deal with input elements Terms and Location
+  handleTermChange(event) {
+    this.setState({
+      term: event.target.value,
+    });
+  }
+  handleLocationChange(event) {
+    this.setState({
+      location: event.target.value,
+    });
+  }
+  //give the let's go button functionality
+  handleSearch(event) {
+    this.props.searchYelp(
+      this.state.term,
+      this.state.location,
+      this.state.sortBy
+    );
+    event.preventDefault();
+    const background = document.querySelector("html");
+    background.style = "height: 300px;";
+  }
+
+  getSortByClass(sortByOption) {
+    if (sortByOption === this.state.sortBy) {
+      return "active";
+    } else {
+      return "";
     }
+  }
 
-    //grab the keys in sortbyOptions and loop through them, returning as a <li> with event handlers.
-    renderSortByOptions() {
-        return Object.keys(sortByOptions).map(sortByOption => {
-            let sortByOptionValue = sortByOptions[sortByOption];
-        return <div onClick={this.handleSearch}><li key={sortByOptionValue} onClick={this.handleSortByChange.bind(this, sortByOptionValue)} className={this.getSortByClass(sortByOptionValue)}>{sortByOption}</li></div>
-        });
-    }
-    //Event handler so they can submit searches by pressing enter as well as clicking button
-    handleKeyPress = (event) => {
-        if(event.key === 'Enter'){
-          this.handleSearch(event);
-        }
-      }
+  handleSortByChange(sortByOption) {
+    this.setState({
+      sortBy: sortByOption,
+    });
+  }
 
-
-
-    render() {
-        return (
-    <div className="SearchBar">
-        <div className="SearchBar-sort-options">
-            <ul>
-              {this.renderSortByOptions()}
-             </ul>
+  //grab the keys in sortbyOptions and loop through them, returning as a <li> with event handlers.
+  renderSortByOptions() {
+    return Object.keys(sortByOptions).map((sortByOption, i) => {
+      let sortByOptionValue = sortByOptions[sortByOption];
+      return (
+        <div key={i} onClick={this.handleSearch}>
+          <p
+            key={sortByOptionValue}
+            onClick={this.handleSortByChange.bind(this, sortByOptionValue)}
+            className={this.getSortByClass(sortByOptionValue)}
+          >
+            {sortByOption}
+          </p>
         </div>
-        {/* <AddressForm /> */}
-    <div className="SearchBar-fields" onKeyPress={this.handleKeyPress}>
-      <input term="Search Businesses" onChange={this.handleTermChange}/>
-      <input placeholder="Where?" onChange={this.handleLocationChange}/>
-    </div>
-    <div className="SearchBar-submit">
-      <a href='http://wwww.#.com' onClick={this.handleSearch} onKeyPress={this.handleKeyPress}>Let's Go</a>
-    </div>
-    </div>
-        )
+      );
+    });
+  }
+  //Event handler so they can submit searches by pressing enter as well as clicking button
+  handleKeyPress = (event) => {
+    if (event.key === "Enter") {
+      this.handleSearch(event);
     }
+  };
+
+  async getLocation() {
+    const response = await fetch("https://ipapi.co/json");
+    const jsonResponse = await response.json();
+    this.setState({ userLocation: jsonResponse.city });
+  }
+
+  componentDidMount() {
+    this.getLocation();
+  }
+
+  render() {
+    return (
+      <div className="SearchBar">
+        <nav id="nav">
+          <div id="logo">
+            <img src="../../favicon.ico" alt="logo" />
+            <h2>Mighty-Tasty!</h2>
+          </div>
+          <div className="SearchBar-sort-options">
+            {this.renderSortByOptions()}
+          </div>
+        </nav>
+        <div className="SearchBar-fields" onKeyPress={this.handleKeyPress}>
+          <input
+            placeholder="&#128270; Search Businesses"
+            term="Search Businesses"
+            onChange={this.handleTermChange}
+          />
+          <input
+            placeholder={this.state.userLocation}
+            onChange={this.handleLocationChange}
+          />
+        </div>
+        <button
+          className="SearchBar-submit"
+          onClick={this.handleSearch}
+          onKeyPress={this.handleKeyPress}
+        >
+          Let's Go
+        </button>
+      </div>
+    );
+  }
 }
 
 export default SearchBar;

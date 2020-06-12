@@ -1,12 +1,11 @@
-import React from 'react';
-import './App.css';
-import SearchBar from './components/SearchBar/SearchBar';
-import BusinessList from './components/BusinessList/BusinessList'
-import Yelp from './util/Yelp';
-
+import React from "react";
+import "./App.css";
+import SearchBar from "./components/SearchBar/SearchBar";
+import BusinessList from "./components/BusinessList/BusinessList";
+import Yelp from "./util/Yelp";
 
 class App extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     //set the initial state
     this.state = {
@@ -15,22 +14,20 @@ class App extends React.Component {
     //bind because searchYelp uses this.setState
     this.searchYelp = this.searchYelp.bind(this);
   }
-searchYelp(term, location, sortBy){
-Yelp.searchYelp(term, location, sortBy).then((businesses) => {
-  this.setState({
-    businesses: businesses
-  });
-});
-}
+  searchYelp(term, location, sortBy) {
+    Yelp.searchYelp(term, location, sortBy).then((businesses) => {
+      this.setState({
+        businesses: businesses,
+      });
+    });
+  }
 
-  render () {
+  render() {
     return (
       <div className="App">
-       <h1>Mighty Tasty!
-       </h1>
-       <SearchBar searchYelp={this.searchYelp}/>
-       <BusinessList businesses={this.state.businesses} />
-</div>
+        <SearchBar searchYelp={this.searchYelp} />
+        <BusinessList businesses={this.state.businesses} />
+      </div>
     );
   }
 }
