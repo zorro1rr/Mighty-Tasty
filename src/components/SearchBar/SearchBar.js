@@ -18,11 +18,9 @@ class SearchBar extends React.Component {
       sortBy: "best_match",
       userLocation: "",
     };
-    //since they use .this the these two methods need to be bind(ed)
     this.handleTermChange = this.handleTermChange.bind(this);
     this.handleLocationChange = this.handleLocationChange.bind(this);
     this.getLocation = this.getLocation.bind(this);
-    //this uses props so it must also be bound
     this.handleSearch = this.handleSearch.bind(this);
   }
 
@@ -90,7 +88,8 @@ class SearchBar extends React.Component {
   async getLocation() {
     const response = await fetch("https://ipapi.co/json");
     const jsonResponse = await response.json();
-    this.setState({ userLocation: jsonResponse.city });
+    this.setState({ userLocation: "Search Location: " + jsonResponse.city });
+    this.setState({ location: jsonResponse.city });
   }
 
   componentDidMount() {
@@ -102,7 +101,8 @@ class SearchBar extends React.Component {
       <div className="SearchBar">
         <nav id="nav">
           <div id="logo">
-            <img src="../../favicon.ico" alt="logo" />
+            <img src={require("./favicon.ico")} alt="logo" />
+
             <h2>Mighty-Tasty!</h2>
           </div>
           <div className="SearchBar-sort-options">

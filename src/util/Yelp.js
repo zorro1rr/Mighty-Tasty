@@ -1,8 +1,5 @@
 //store yelp api key
-const apiKey =
-  "pSupkM4EbuChkBT6bCX812gsIACmnTbMQBUuwvs-FNdQSuaFkcVpxbX9YLA3pHIdZqS5S6drqYtJd5TUTT5hw6_HUA1NWDCQqFkoQeeQ7rMhzkIMB7f4To1ZXFB1XnYx";
-
-// const apiKey = process.env.REACT_APP_KEY;
+const apiKey = process.env.REACT_APP_KEY;
 
 const Yelp = {
   async searchYelp(term, location, sortBy) {
@@ -32,6 +29,8 @@ const Yelp = {
           category: business.categories[0].title,
           rating: business.rating,
           reviewCount: business.review_count,
+          phone: business.phone,
+          yelp: business.url,
         };
       });
     }

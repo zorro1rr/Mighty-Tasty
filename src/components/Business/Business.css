@@ -11,7 +11,7 @@
 }
 
 .Business h2 {
-  margin-bottom: 0.5rem;
+  margin-bottom: 0;
   font-weight: 600;
 }
 
@@ -48,4 +48,16 @@
 .Business-reviews .rating {
   font-size: 0.88rem;
   line-height: 1rem;
+}
+
+.addy {
+  line-height: 20px;
+}
+
+hr {
+  color: black;
+  height: 1px;
+  border: solid 1px black;
+  width: 100%;
+  margin: 0;
 }

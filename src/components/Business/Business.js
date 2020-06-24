@@ -12,10 +12,12 @@ class Business extends React.Component {
           </a>
         </div>
         <h2>{business.name}</h2>
+        <hr></hr>
         <div className="Business-information">
           <div className="Business-address">
             <p>
               <a
+                className="addy"
                 target="_blank"
                 rel="noopener noreferrer"
                 href={
@@ -38,8 +40,15 @@ class Business extends React.Component {
           </div>
           <div className="Business-reviews">
             <h3>{business.category}</h3>
-            <h3 className="rating">{business.rating} stars</h3>
-            <p>{business.reviewCount} reviews</p>
+            <p>Phone:{business.phone}</p>
+            <a
+              href={business.yelp}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="rating"
+            >
+              {business.rating} stars / {business.reviewCount} reviews
+            </a>
           </div>
         </div>
       </div>
