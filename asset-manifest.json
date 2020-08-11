@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/Mighty-Tasty/static/css/main.2d4ac752.chunk.css",
+    "main.js": "/Mighty-Tasty/static/js/main.8ff289dd.chunk.js",
+    "main.js.map": "/Mighty-Tasty/static/js/main.8ff289dd.chunk.js.map",
+    "runtime-main.js": "/Mighty-Tasty/static/js/runtime-main.0fa4f4dc.js",
+    "runtime-main.js.map": "/Mighty-Tasty/static/js/runtime-main.0fa4f4dc.js.map",
+    "static/js/2.93edab62.chunk.js": "/Mighty-Tasty/static/js/2.93edab62.chunk.js",
+    "static/js/2.93edab62.chunk.js.map": "/Mighty-Tasty/static/js/2.93edab62.chunk.js.map",
+    "index.html": "/Mighty-Tasty/index.html",
+    "precache-manifest.2592ebf9099f252fceac45be02e153f5.js": "/Mighty-Tasty/precache-manifest.2592ebf9099f252fceac45be02e153f5.js",
+    "service-worker.js": "/Mighty-Tasty/service-worker.js",
+    "static/css/main.2d4ac752.chunk.css.map": "/Mighty-Tasty/static/css/main.2d4ac752.chunk.css.map",
+    "static/js/2.93edab62.chunk.js.LICENSE.txt": "/Mighty-Tasty/static/js/2.93edab62.chunk.js.LICENSE.txt",
+    "static/media/App.css": "/Mighty-Tasty/static/media/background.a2e4555c.gif",
+    "static/media/favicon.ico": "/Mighty-Tasty/static/media/favicon.83942fdc.ico",
+    "static/media/searchy.gif": "/Mighty-Tasty/static/media/searchy.e36b4ad9.gif"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.0fa4f4dc.js",
+    "static/js/2.93edab62.chunk.js",
+    "static/css/main.2d4ac752.chunk.css",
+    "static/js/main.8ff289dd.chunk.js"
+  ]
+}
