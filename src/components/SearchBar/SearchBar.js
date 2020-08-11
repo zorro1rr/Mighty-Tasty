@@ -45,6 +45,10 @@ class SearchBar extends React.Component {
     event.preventDefault();
     const background = document.querySelector("html");
     background.style = "height: 300px;";
+    const searchy = document.querySelector("#businessDiv");
+    const BusinessList = document.querySelector(".BusinessList");
+    searchy.style = "display:none";
+    BusinessList.style = "display:inherit";
   }
 
   getSortByClass(sortByOption) {

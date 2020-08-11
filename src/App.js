@@ -28,7 +28,9 @@ class App extends React.Component {
         <div className="background">
           <SearchBar searchYelp={this.searchYelp} />
         </div>
-
+        <div id="businessDiv">
+          <img src={require("./searchy.gif")} alt="search gif"></img>
+        </div>
         <BusinessList businesses={this.state.businesses} />
       </div>
     );

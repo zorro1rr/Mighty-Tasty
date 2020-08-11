@@ -1,15 +1,28 @@
 /* Universal Styles */
-/* * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-} */
+* {
+  /* outline: 1px solid red; */
+}
+.App {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+#businessDiv {
+  display: flex;
+  justify-content: center;
+}
+
+.searchGif {
+  display: none;
+}
+
 .background {
   background-image: url("./background.gif");
   background-size: cover;
   background-repeat: no-repeat;
-  height: 500px;
   overflow-x: hidden;
+  min-height: 59vh;
 }
 @media only screen and (max-width: 750px) {
   .background {
